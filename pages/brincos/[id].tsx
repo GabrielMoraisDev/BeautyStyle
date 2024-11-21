@@ -16,6 +16,7 @@ interface Product {
   price: number;
   description: string;
   imagem: string;
+  quantity: number;
 }
 
 export default function ProductDetails() {
@@ -27,8 +28,8 @@ export default function ProductDetails() {
   // Função para adicionar o produto ao carrinho
   const addToCart = () => {
     if (product) {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const existingProduct = cart.find((item: Product) => item.id === product.id);
+      const cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
+      const existingProduct = cart.find((item) => item.id === product.id);
 
       if (existingProduct) {
         existingProduct.quantity += qnt; // Incrementa a quantidade se o produto já estiver no carrinho
@@ -39,20 +40,24 @@ export default function ProductDetails() {
       localStorage.setItem('cart', JSON.stringify(cart)); // Salva o carrinho no localStorage
       updateCartCount();
     }
+
+    alert('Produto adicionado ao carrinho de compras')
+    location.reload();
+
   };
 
   // Atualizar o contador de produtos no carrinho
   const updateCartCount = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const totalItems = cart.reduce((acc: number, item: Product) => acc + item.quantity, 0);
+    const cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     localStorage.setItem('cartCount', totalItems.toString());
   };
 
   // Carregar o produto com base no ID da URL
   useEffect(() => {
     if (id) {
-      const foundProduct = products.find((item: Product) => item.id === Number(id));
-      setProduct(foundProduct || null);
+      const foundProduct = products.find((item) => item.id === Number(id));
+      setProduct(foundProduct ? { ...foundProduct, quantity: 1 } : null);
     }
   }, [id]);
 
@@ -62,7 +67,7 @@ export default function ProductDetails() {
       <div className="m-auto text-center">
         <Head>
           <title>Produto não encontrado</title>
-          <meta name="description" content="Styled Wear created by Gabriel Morais" />
+          <meta name="description" content="Created with NextJS" />
         </Head>
 
         <Navbar page="brincos" />
@@ -80,7 +85,7 @@ export default function ProductDetails() {
     <div className="m-auto">
       <Head>
         <title>{product.title} | Styled Wear</title>
-        <meta name="description" content="Styled Wear created by Gabriel Morais" />
+        <meta name="description" content="Created with NextJS" />
       </Head>
 
       <Navbar page="brincos" />
@@ -107,7 +112,7 @@ export default function ProductDetails() {
         <div className="flex place-items-center justify-center m-auto text-center mb-5">
           <button
             disabled={qnt === 1}
-            className={`bi bi-dash p-3 w-10 h-10 flex justify-center place-items-center ${qnt === 1 ? 'bg-gray-400' : 'bg1 cursor-pointer'} text-white rounded-md`}
+            className={`bi bi-dash p-3 w-10 h-10 flex justify-center place-items-center ${qnt === 1 ? 'bg-gray-300' : 'bg1 cursor-pointer'} text-white rounded-md`}
             onClick={() => qnt > 1 && setQnt(qnt - 1)}
           >
             -

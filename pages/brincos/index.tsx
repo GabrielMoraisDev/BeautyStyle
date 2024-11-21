@@ -17,13 +17,13 @@ export default function Pants() {
   return (
     <div className="mb-10">
       <Head>
-        <title>Calças Styled Wear</title>
-        <meta name="description" content="Styled Wear created by Gabriel Morais" />
+        <title>Brincos - Beauty Style</title>
+        <meta name="description" content="Created with NextJS" />
       </Head>
 
       <Navbar page="brincos" />
 
-      <h1 className="uppercase text-font-300 text-center text-xl md:text-3xl mt-5">Calças</h1>
+      <h1 className="uppercase text-font-300 text-center text-xl md:text-3xl mt-5">Brincos</h1>
 
       <div className="w-[92%] m-auto my-4 flex justify-center">
         <input

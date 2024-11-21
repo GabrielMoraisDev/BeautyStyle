@@ -14,7 +14,7 @@ export default function Vitrini() {
                 <label className="line-through text-gray-400 xl:text-2xl">R$ 1.500,00</label>
                 <p className="text-2xl text-color2 xl:text-3xl">R$ 1.299,99 <label className="text-sm">À VISTA</label></p>
                 <p className="text-font-300 mt-3 xl:w-[80%] xl:text-xl">Alianças fabricadas manualmente, com equipamentos da mais alta tecnologia seguindo normas e padrões Nacionais e Internacionais...</p>
-                    <div className="flex mt-3 xl:w-1/2 text-white">
+                    <div className="flex mt-3 xl:w-[65%] text-white">
                         <Link href={`/aneis/EUUU`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mr-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER PRODUTO</Link>
                         <Link href={`/aneis`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mx-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER MAIS</Link>
                     </div>
@@ -35,7 +35,7 @@ export default function Vitrini() {
                 <label className="line-through text-gray-400 xl:text-2xl">R$ 3.799,99</label>
                 <p className="text-2xl text-color2 xl:text-3xl">R$ 2.999,99 <label className="text-sm">À VISTA</label></p>
                 <p className="text-font-300 mt-3 xl:w-[80%] xl:text-xl xl:float-end">Brincos fabricados manualmente, com equipamentos da mais alta tecnologia seguindo normas e padrões Nacionais e Internacionais...</p>
-                    <div className="flex mt-3 xl:w-1/2 xl:float-end text-white">
+                    <div className="flex mt-3 xl:w-[65%] xl:float-end text-white">
                         <Link href={`/brincos/Jaqueta Wear Double/?description=Descrição do segundo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente.&imagem=vitrini2.png&price=2999.99`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mr-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER PRODUTO</Link>
                         <Link href={`/brincos`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mx-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER MAIS</Link>
                     </div>
@@ -53,7 +53,7 @@ export default function Vitrini() {
                 <label className="line-through text-gray-400 xl:text-2xl">R$ 1.499,99</label>
                 <p className="text-2xl text-color2 xl:text-3xl">R$ 1.199,99 <label className="text-sm">À VISTA</label></p>
                 <p className="text-font-300 mt-3 xl:w-[80%] xl:text-xl">Pulseiras fabricadas manualmente, com equipamentos da mais alta tecnologia seguindo normas e padrões Nacionais e Internacionais...</p>
-                    <div className="flex mt-3 xl:w-1/2 text-white">
+                    <div className="flex mt-3 xl:w-[65%] text-white">
                         <Link href={`/pulseiras/Relógio Plate aço inoxidável Prata/?description=Descrição do terceiro produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente.&imagem=vitrini3.png&price=1199.99`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mr-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER PRODUTO</Link>
                         <Link href={`/pulseiras`} className="w-1/2 flex justify-center place-items-center h-12 bg1 font-bold mx-2 rounded-md text-md hover:opacity-75 cursor-pointer duration-300">VER MAIS</Link>
                     </div>
