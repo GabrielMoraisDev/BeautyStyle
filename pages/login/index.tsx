@@ -32,19 +32,11 @@ export default function Pants() {
                             <input type="password" name="password" id="password" placeholder="Digite aqui..." className="pl-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"/>
                         </div>
                         <div className="flex items-center justify-between">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                  <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required/>
-                                </div>
-                                <div className="ml-3 text-sm">
-                                  <label htmlFor="remember" className="text-slate-100">Remember me</label>
-                                </div>
-                            </div>
-                            <a href="#" className="text-sm font-medium text-slate-100 hover:underline">Forgot password?</a>
+
                         </div>
-                        <button type="submit" className="w-full text-white bg-slate-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center hover:opacity-60 duration-300 cursor-pointer">Sign in</button>
+                        <button type="submit" className="w-full text-white bg1 hover:bg-white hover:text-black border-2 border-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center duration-300 cursor-pointer">Sign in</button>
                         <p className="text-sm font-light text-slate-100">
-                            Não possui um login? <a href="#" className="font-medium text-sky-300 hover:underline">Crie sua conta</a>
+                            Não possui um login? <a href="#" className="font-bold text-white hover:underline">Crie sua conta</a>
                         </p>
                     </form>
                 </div>
@@ -52,9 +44,10 @@ export default function Pants() {
         </div>
       </section>
       
-      <div className="h-40 w-full"></div>
+      
 
-      <div className="w-[92%] m-auto">
+      <div className="w-[92%] m-auto mt-5 lg:mt-10">
+      <hr className="custom-hr" />
           <Footer />
         </div>
     </div>

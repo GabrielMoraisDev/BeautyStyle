@@ -87,7 +87,7 @@ export default function Navbar({ page }: NavProps) {
                     </svg>
                     </div>
 
-                    <div className={`${eco?'max-h-28 sm:max-h-[30vh] py-5':'max-h-0 py-0'} absolute top-[4rem] right-0 bg-white w-full px-10 z-10 overflow-hidden duration-300`}>
+                    <div  onMouseEnter={() => setEco(true)} onMouseOut={() => setEco(false)} className={`${eco?'max-h-28 sm:max-h-[30vh] py-5':'max-h-0 py-0'} absolute top-[4rem] right-0 bg-white w-full px-10 z-10 overflow-hidden duration-300`}>
                     Nossa empresa é guiada por um propósito maior: alinhar inovação e responsabilidade ambiental para construir um futuro sustentável. Acreditamos que o progresso só é verdadeiro quando beneficia o planeta e as pessoas.
                     Por isso, adotamos práticas eco-friendly em todas as etapas do nosso processo. Desde a escolha de materiais sustentáveis e recicláveis até a redução do consumo energético e de recursos naturais, buscamos minimizar nossa pegada ecológica.
                     </div>
