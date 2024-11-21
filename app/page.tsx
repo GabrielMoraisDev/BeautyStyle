@@ -1,6 +1,5 @@
 'use client'; // Mantenha isso se precisar de um componente cliente
 import { Suspense } from 'react'; // Importando Suspense
-import { useSearchParams } from 'next/navigation'; // Importando useSearchParams
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Features from "@/components/Features";
@@ -9,11 +8,6 @@ import Catalog from "@/components/Catalog";
 import { Slider } from "@/components/Slider";
 
 function HomeContent() {
-  const searchParams = useSearchParams(); // Obtendo os parâmetros de busca da URL
-  const qnt = searchParams ? searchParams.get('qnt') : null; // Verifica se searchParams está definido e então obtém o parâmetro 'qnt'
-
-  // Convertendo qnt para número, se necessário
-  const ProductCount = Number(qnt) || 0; // Se qnt não estiver definido, use 0
 
   return (
     <div>
