@@ -1,13 +1,10 @@
 'use client'
-import { useRouter } from 'next/router';
 import '@/app/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
 
 export default function Pants() {
-  const router = useRouter();
-  const qntSave = Number(router.query.qnt) || 0; 
 
   return (
     <div className="mb-10">
@@ -17,7 +14,7 @@ export default function Pants() {
         <meta name="description" content="Styled Wear created by Gabriel Morais" />
       </Head>
 
-      <Navbar ProductCount={qntSave} page="pants" />
+      <Navbar page="pants" />
       <section className='mt-10'>
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
             <div className="w-full bg1 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">

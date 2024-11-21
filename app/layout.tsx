@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Styled Wear",
-  description: "Created by Gabriel Morais",
+  title: "Beauty Style",
+  description: "Created with Next.js",
 };
 
 export default function RootLayout({

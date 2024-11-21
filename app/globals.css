@@ -66,7 +66,7 @@ body {
 }
 
 .bg1{
-  background-color: #476085;
+  background-color: #E4B6B1;
 }
 
 .bg2{
@@ -75,6 +75,18 @@ body {
 
 .bg3{
   background-color: #E7A481;
+}
+
+.text-color1{
+  color: #E4B6B1;
+}
+
+.text-color2{
+  color: #FEADAC;
+}
+
+.text-color3{
+  color: #E7A481;
 }
 
 .bg-img1{
@@ -99,7 +111,7 @@ body {
 }
 
 .custom-hr{
-  border-color: #81aae7;
+  border-color: #FEADAC;
 }
 
 @layer utilities {

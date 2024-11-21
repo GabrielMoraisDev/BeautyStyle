@@ -17,28 +17,29 @@ function HomeContent() {
 
   return (
     <div>
-      <Navbar ProductCount={ProductCount} page='home' /> {/* Passando ProductCount */}
+      <Navbar page='home' /> {/* Passando ProductCount */}
       <Slider />
 
       <div className="w-[92%] m-auto">
         <p className="text-xl text-black text-center mt-5 text-font-300 uppercase">
-          SEU ESTILO, NOSSO COMPROMISSO
+        ELEGÂNCIA QUE REFLETE SUA ESSÊNCIA
         </p>
         <hr className="my-3 custom-hr" />
 
-        <Features qntSave={ProductCount} />
+        <Features />
         <p className="text-xl text-black text-center text-font-300 uppercase my-12 w-[80%] m-auto">
-          Roupas criadas para todos os eventos<br />pensando em você
+        ACESSÓRIOS SOFISTICADOS PARA SEU COTIDIANO,
+        EVENTOS DE CLASSE E OUTROS.
         </p>
-
-        <Vitrini qntKart={ProductCount} />
+        <hr className="my-3 custom-hr" />
+        <Vitrini />
         <hr className="custom-hr mt-7" />
       </div>
 
       <Catalog />
       <div className="w-[92%] m-auto">
         <p className="text-xl text-black text-center text-font-300 uppercase my-12 w-[80%] m-auto">
-          “As roupas certas podem refletir o seu verdadeiro estilo.”
+        CLASSE E ESTILO PARA TODOS OS GOSTOS
         </p>
 
         <hr className="custom-hr" />

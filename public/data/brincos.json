@@ -1,0 +1,59 @@
+[
+    {
+      "id": 1,
+      "title": "Brinco BeWase",
+      "price": 299.99,
+      "imagem": "/products/brincos/1.webp",
+      "description": "Descrição do primeiro produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 2,
+      "title": "Brinco EveryWear",
+      "price": 499.99,
+      "imagem": "/products/brincos/2.webp",
+      "description": "Descrição do segundo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 3,
+      "title": "Brinco Wear Double",
+      "price": 199.99,
+      "imagem": "/products/brincos/3.webp",
+      "description": "Descrição do terceiro produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 4,
+      "title": "Brinco OnlyBasic",
+      "price": 299.99,
+      "imagem": "/products/brincos/4.webp",
+      "description": "Descrição do quarto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 5,
+      "title": "Brinco WearShirt",
+      "price": 99.99,
+      "imagem": "/products/brincos/5.webp",
+      "description": "Descrição do quinto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 6,
+      "title": "Brinco WearYe",
+      "price": 89.99,
+      "imagem": "/products/brincos/6.webp",
+      "description": "Descrição do sexto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 7,
+      "title": "Brinco Wolter",
+      "price": 399.99,
+      "imagem": "/products/brincos/7.webp",
+      "description": "Descrição do sétimo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    },
+    {
+      "id": 8,
+      "title": "Brinco WolterBasic",
+      "price": 499.99,
+      "imagem": "/products/brincos/8.webp",
+      "description": "Descrição do oitavo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+    }
+  ]
+  
