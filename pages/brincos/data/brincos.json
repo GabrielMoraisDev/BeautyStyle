@@ -1,59 +1,59 @@
 [
     {
       "id": 1,
-      "title": "Brinco BeWase",
-      "price": 299.99,
+      "title": "Brincos de Diamante Encrustado",
+      "price": 2999.99,
       "imagem": "/products/brincos/1.webp",
-      "description": "Descrição do primeiro produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Brincos fabricados manualmente, com equipamentos da mais alta tecnologia seguindo normas e padrões Nacionais e Internacionais."
     },
     {
       "id": 2,
-      "title": "Brinco EveryWear",
-      "price": 499.99,
+      "title": "Brincos EveryWear",
+      "price": 2499.99,
       "imagem": "/products/brincos/2.webp",
-      "description": "Descrição do segundo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Ideais para ocasiões especiais ou como símbolo de sofisticação no dia a dia, os detalhes dos Brincos EveryWear são pensados para você e seu cotidiano."
     },
     {
       "id": 3,
-      "title": "Brinco Wear Double",
-      "price": 199.99,
+      "title": "Brincos Fy",
+      "price": 1199.99,
       "imagem": "/products/brincos/3.webp",
-      "description": "Descrição do terceiro produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos Fy são elegantes e sofisticados, ideias para eventos especiais. Feito com metais preciosos como ouro e platina, tem a resistência e qualidade que você procura."
     },
     {
       "id": 4,
-      "title": "Brinco OnlyBasic",
-      "price": 299.99,
+      "title": "Brincos BeWare",
+      "price": 1799.99,
       "imagem": "/products/brincos/4.webp",
-      "description": "Descrição do quarto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos BeWare são peças elegantes e atemporais, geralmente confeccionados em metais preciosos como ouro ou platina."
     },
     {
       "id": 5,
-      "title": "Brinco WearShirt",
-      "price": 99.99,
+      "title": "Brinco EgitStyle",
+      "price": 1399.99,
       "imagem": "/products/brincos/5.webp",
-      "description": "Descrição do quinto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos EgitStyle fabricados manualmente, com equipamentos da mais alta tecnologia seguindo normas e padrões Nacionais e Internacionais."
     },
     {
       "id": 6,
-      "title": "Brinco WearYe",
-      "price": 89.99,
+      "title": "Brinco TRYND Diamante",
+      "price": 2789.99,
       "imagem": "/products/brincos/6.webp",
-      "description": "Descrição do sexto produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos Trynd são opções de brincos para ocasiões especiais, com detalhes encrustados em diamante e plativa, perfeito pra quem procura o equilíbrio entre elegância e sofisticação."
     },
     {
       "id": 7,
-      "title": "Brinco Wolter",
-      "price": 399.99,
+      "title": "Brinco TRYND EXPENSE Gold",
+      "price": 2999.99,
       "imagem": "/products/brincos/7.webp",
-      "description": "Descrição do sétimo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos Trynd são opções de brincos para ocasiões especiais, feito com ouro 24K, perfeito pra quem procura o equilíbrio entre elegância e sofisticação."
     },
     {
       "id": 8,
-      "title": "Brinco WolterBasic",
-      "price": 499.99,
+      "title": "Brinco TRYND Ouro",
+      "price": 3999.99,
       "imagem": "/products/brincos/8.webp",
-      "description": "Descrição do oitavo produto. Esse texto pode ser alterado e personalizado de acordo com a necessidade do cliente."
+      "description": "Os Brincos Trynd são opções de brincos para ocasiões especiais, feito com ouro 18K, perfeito pra quem procura o equilíbrio entre elegância e sofisticação."
     }
   ]
   

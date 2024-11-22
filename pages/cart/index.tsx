@@ -106,7 +106,7 @@ export default function Cart() {
             ))}
             </div>
 
-            <div className="lg:ml-5 mt-5 text-center lg:w-[35%]">
+            <div className="lg:ml-5 mt-5 text-center lg:w-[45%]">
               <p className="text-xl font-semibold text-font-500 uppercase">Resumo do Pedido</p>
               <hr className="my-2" />
               <p className="text-2xl font-semibold text-slate-500">
