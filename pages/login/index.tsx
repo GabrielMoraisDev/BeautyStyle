@@ -1,10 +1,11 @@
 'use client';
+
 import '@/app/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Head from 'next/head';
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 
 interface Message {
   type: 'success' | 'error';
@@ -16,39 +17,49 @@ export default function Pants() {
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<Message | null>(null);
 
+  // Verifica o authToken no localStorage ao carregar a página
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    const id = localStorage.getItem('userId');
+    if (token && id) {
+      window.location.href = '/user'; // Redireciona se o token já estiver presente
+    }
+  }, []);
+
   const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault(); // Evita o comportamento padrão do formulário
   
     try {
-      const response = await fetch('http://192.168.0.155/BeautyStyle/login.php', { // Ajuste o URL conforme seu ambiente
+      const response = await fetch('http://localhost/BeautyStyle/login_validation.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, senha: password }), // Certifique-se de que o back-end espera "senha"
+        body: JSON.stringify({ email, senha: password }),
       });
   
       const data = await response.json();
   
-      if (response.ok) {
+      if (response.ok && data.status === 'success') {
         setMessage({ type: 'success', text: data.message });
-        // Armazenando o token no localStorage
-        localStorage.setItem('authToken', data.token);
-        // Redirecionando para a página principal ou outra rota protegida
-        window.location.href = '/user';  // Altere para a rota desejada
+        localStorage.setItem('authToken', data.token); // Armazena o token no localStorage
+        localStorage.setItem('userId', data.userId); // Armazena o ID do usuário no localStorage
+        window.location.href = '/user'; // Redireciona para a rota protegida
       } else {
         setMessage({ type: 'error', text: data.message });
       }
     } catch (error) {
       setMessage({ type: 'error', text: 'Erro ao se conectar com o servidor.' });
+      console.log(error);
     }
-  };  
+  };
+  
 
   return (
     <div className="mb-10">
       <Head>
         <title>Faça seu Login</title>
-        <meta name="description" content="Styled Wear created by Gabriel Morais" />
+        <meta name="description" content="Created with NextJS" />
       </Head>
 
       <Navbar page="login" />
@@ -97,14 +108,14 @@ export default function Pants() {
                   Fazer login
                 </button>
                 {message && (
-                <div
-                  className={`text-center p-2 rounded-md ${
-                    message.text === 'Login realizado com sucesso!' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700'
-                  }`}
-                >
-                  {message.text}
-                </div>
-              )}
+                  <div
+                    className={`text-center p-2 rounded-md ${
+                      message.type === 'success' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700'
+                    }`}
+                  >
+                    {message.text}
+                  </div>
+                )}
                 <p className="text-sm font-light text-slate-700">
                   Não possui um login?{' '}
                   <Link href="/create" className="font-bold text-slate-700 hover:underline">
