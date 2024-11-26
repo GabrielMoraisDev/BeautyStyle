@@ -22,6 +22,12 @@ export default function Navbar({ page }: NavProps) {
         } else if (count) {
             setCartCount(Number(count));
         }
+
+        const authToken = localStorage.getItem('authToken'); // Verifica se há um authToken
+
+        if (!authToken) {
+            setCartCount(0);
+        }
     }, []);
 
     return (

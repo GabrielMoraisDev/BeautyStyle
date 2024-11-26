@@ -2,7 +2,7 @@ import Link from "next/link";
 import '@/app/globals.css'
 
 interface ProdProps {
-    id: number;
+    id: string;
     title: string;
     page: string;
     imagem: string;

@@ -8,7 +8,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import products from './data/brincos.json'; // Atualize o caminho de acordo com a localização do seu arquivo JSON
 
 interface Product {
   id: number;
@@ -17,6 +16,7 @@ interface Product {
   description: string;
   imagem: string;
   quantity: number;
+  categoria: string;
 }
 
 export default function ProductDetails() {
@@ -24,45 +24,79 @@ export default function ProductDetails() {
   const { id } = router.query; // Captura o ID da URL
   const [product, setProduct] = useState<Product | null>(null); // Estado para armazenar o produto
   const [qnt, setQnt] = useState(1); // Estado para quantidade
+  const [loading, setLoading] = useState(true); // Estado para exibição do carregamento
+  const [error, setError] = useState(false); // Estado para erros de carregamento
 
-  // Função para adicionar o produto ao carrinho
-  const addToCart = () => {
-    if (product) {
-      const cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
-      const existingProduct = cart.find((item) => item.id === product.id);
+  // Função para carregar os produtos do endpoint
+  useEffect(() => {
+    if (id) {
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch(`http://localhost/BeautyStyle/products.php?categoria=brincos`);
+          if (!response.ok) {
+            throw new Error('Erro ao carregar os produtos');
+          }
+          const data: Product[] = await response.json();
+          const foundProduct = data.find((item) => item.id === Number(id));
+          setProduct(foundProduct ? { ...foundProduct, quantity: 1 } : null);
+        } catch (err) {
+          console.error(err);
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-      if (existingProduct) {
-        existingProduct.quantity += qnt; // Incrementa a quantidade se o produto já estiver no carrinho
-      } else {
-        cart.push({ ...product, quantity: qnt }); // Adiciona o produto ao carrinho
-      }
+      fetchProduct();
+    }
+  }, [id]);
 
-      localStorage.setItem('cart', JSON.stringify(cart)); // Salva o carrinho no localStorage
-      updateCartCount();
+// Atualizando o produto com categoria ao ser adicionado ao carrinho
+const addToCart = () => {
+  const authToken = localStorage.getItem('authToken'); // Verifica se há um authToken
+
+  if (!authToken) {
+    alert('Você precisa fazer login para adicionar itens ao carrinho!');
+    router.push('/login'); // Redireciona para a página de login
+    return;
+  }
+
+  if (product) {
+    const cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    const existingProduct = cart.find((item) => item.id === product.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += qnt; // Incrementa a quantidade se o produto já estiver no carrinho
+    } else {
+      // Adiciona o caminho da imagem e a categoria ao produto antes de salvar no carrinho
+      const productWithImageAndCategory = {
+        ...product,
+        imagem: `/img/products/brincos/${product.id}.webp`,
+        quantity: qnt,
+        categoria: product.categoria,  // Incluindo a categoria
+      };
+      cart.push(productWithImageAndCategory); // Adiciona o produto ao carrinho
     }
 
-    alert('Produto adicionado ao carrinho de compras')
-    location.reload();
+    localStorage.setItem('cart', JSON.stringify(cart)); // Salva o carrinho no localStorage
+    updateCartCount();
+  }
 
-  };
-
-  // Atualizar o contador de produtos no carrinho
+  alert('Produto adicionado ao carrinho de compras');
+  location.reload();
+};
+  
   const updateCartCount = () => {
     const cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     localStorage.setItem('cartCount', totalItems.toString());
   };
 
-  // Carregar o produto com base no ID da URL
-  useEffect(() => {
-    if (id) {
-      const foundProduct = products.find((item) => item.id === Number(id));
-      setProduct(foundProduct ? { ...foundProduct, quantity: 1 } : null);
-    }
-  }, [id]);
+  if (loading) {
+    return <p className="text-center mt-10">Carregando...</p>;
+  }
 
-  // Se o produto não for encontrado
-  if (!product) {
+  if (error || !product) {
     return (
       <div className="m-auto text-center">
         <Head>
@@ -97,7 +131,7 @@ export default function ProductDetails() {
         <Image
           width={300}
           height={300}
-          src={`/img${product.imagem}`}
+          src={`/img/products/brincos/${`${product.id}.webp`}`}
           alt={product.title}
           className="m-auto text-center"
         />
