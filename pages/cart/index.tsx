@@ -2,7 +2,7 @@ import '@/app/globals.css';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -17,7 +17,7 @@ interface Product {
 }
 
 export default function Cart() {
-  const router = useRouter();
+  // const router = useRouter();
   const [cart, setCart] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -54,51 +54,47 @@ export default function Cart() {
   };
 
   // Função para finalizar a compra
-function finished() {
-  const userId = localStorage.getItem('userId');
-  if (!userId) {
-    alert('Por favor, faça o login para finalizar a compra.');
-    return;
-  }
-
-  const produtos = cart.map((product) => ({
-    title: product.title,
-    description: product.description,
-    price: product.price,
-    categoria: product.categoria,
-  }));
-
-  // Adicionando o console.log para verificar os dados
-  console.log('Dados sendo enviados:', {
-    id_usuario: userId,
-    produtos,
-  });
-
-  fetch('http://localhost/Beautystyle/insert_pedidos.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ id_usuario: userId, produtos }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data); // Adiciona um log para ver o que o back-end está respondendo
-      if (data.success) {
-        localStorage.clear();
-        alert('Compra concluída com sucesso!');
-        router.push('/');
-      } else {
-        alert('Erro ao finalizar a compra');
-      }
+  function finished() {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      alert('Por favor, faça o login para finalizar a compra.');
+      return;
+    }
+  
+    const produtos = cart.map((product) => ({
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      categoria: product.categoria,
+      quantity: product.quantity,
+    }));
+  
+    // Enviar os dados via POST para o PHP
+    fetch('http://localhost/Beautystyle/insert_pedidos.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id_usuario: userId,
+        produtos: produtos,
+      }),
     })
-    .catch((error) => {
-      console.error('Erro na solicitação:', error);
-      alert('Erro ao finalizar a compra');
-    });
-}
-
-
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert('Pedido realizado com sucesso!');
+          console.log('Resposta do servidor:', data.message);
+        } else {
+          alert('Erro ao finalizar o pedido.');
+          console.error('Erro do servidor:', data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao enviar os dados:', error);
+      });
+  }
+  
 
   return (
     <div>
@@ -144,16 +140,40 @@ function finished() {
               <p className="text-2xl font-semibold text-slate-500">
                 {calculateTotal().toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </p>
+
               <p className="text-base font-semibold text-slate-400">
                 (ou 12X de {valorParcelado().toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })})
               </p>
+
               <div className="w-full h-72 mt-3 rounded-lg">
-                {/* Payment Methods */}
-                <div onClick={() => finished()} className="bg2 font-bold uppercase hover:opacity-65 cursor-pointer rounded-lg flex justify-center place-items-center mt-2 w-[90%] m-auto h-12 border text-white p-4 duration-300">
+
+                <div className="mt-2 w-[90%] m-auto h-12 border border-gray-300 p-4 rounded-lg hover:shadow-md transition-shadow duration-300 ease-in-out animate-fadeInLeft flex place-items-center">
+                  <input type="radio" defaultChecked name="paymentMethod" id="parcel" className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-[#FEADAC] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEADAC] mr-2" />
+                  <label htmlFor="parcel" className="ml-2 cursor-pointer select-none font-medium">Parcelado em até 12 vezes</label>
+                </div>
+
+                <div className="mt-2 w-[90%] m-auto h-12 border border-gray-300 p-4 rounded-lg hover:shadow-md transition-shadow duration-300 ease-in-out animate-fadeInLeft flex place-items-center">
+                  <input type="radio" name="paymentMethod" id="debit" className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-[#FEADAC] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEADAC] mr-2" />
+                  <label htmlFor="debit" className="ml-2 cursor-pointer select-none font-medium">Cartão de Débito</label>
+                </div>
+
+                <div className="mt-2 w-[90%] m-auto h-12 border border-gray-300 p-4 rounded-lg hover:shadow-md transition-shadow duration-300 ease-in-out animate-fadeInLeft flex place-items-center">
+                  <input type="radio" name="paymentMethod" id="boleto" className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-[#FEADAC] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEADAC] mr-2" />
+                  <label htmlFor="boleto" className="ml-2 cursor-pointer select-none font-medium">Boleto (Até 3 dias úteis)</label>
+                </div>
+
+                <div className="mt-2 w-[90%] m-auto h-12 border border-gray-300 p-4 rounded-lg hover:shadow-md transition-shadow duration-300 ease-in-out animate-fadeInLeft flex place-items-center">
+                  <input type="radio" name="paymentMethod" id="pix" className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-[#FEADAC] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FEADAC] mr-2" />
+                  <label htmlFor="pix" className="ml-2 cursor-pointer select-none font-medium">Pix</label>
+                </div>
+
+                <div onClick={()=> finished()} className="bg2 font-bold uppercase hover:opacity-65 cursor-pointer rounded-lg flex justify-center place-items-center mt-2 w-[90%] m-auto h-12 border text-white p-4 duration-300">
                   Finalizar Compra
                 </div>
               </div>
-            </div>
+
+          </div>
+
           </div>
         )}
       </div>
