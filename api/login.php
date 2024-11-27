@@ -1,8 +1,7 @@
 <?php
+
 // Define os cabeçalhos CORS para permitir acesso de outros domínios
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type');
+include('cors.php');
 
 // Define o cabeçalho para a resposta ser em JSON
 header('Content-Type: application/json');

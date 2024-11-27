@@ -1,172 +1,126 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import '@/app/globals.css';
 import Navbar from '@/components/Navbar';
-import Link from 'next/link';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 import Head from 'next/head';
 
-interface User {
+interface Produto {
+  id: number;
   nome: string;
-  email: string;
-  senha: string;
-  error: string;
-  qnt_compras?: number;
-  img?: string;
+  preco: string;
+  descricao: string;
+  categoria: string;
+  qnt: number;
 }
 
-export default function ProtectedPage() {
-  const router = useRouter();
-  const [userData, setUserData] = useState<User | null>(null);
+export default function Compras() {
+  const [produtos, setProdutos] = useState<Produto[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [nome, setNome] = useState<string>('');
-  const [senha, setSenha] = useState<string>('');
-  const [imgUrl, setImgUrl] = useState<string>(''); // Novo estado para a URL da imagem
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId');
+    const endpoint = `http://localhost/Beautystyle/pedidos.php?id_user=${userId}`;
 
-    if (!token || !userId) {
-      router.push('/login'); // Redireciona para a página de login se o token ou o ID estiver ausente
-    } else {
-      // Buscar os dados do usuário pelo ID
-      fetch(`http://localhost/BeautyStyle/login_info.php?id=${userId}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error('Erro na resposta da API');
-          }
-          return res.json();
-        })
-        .then((data: User) => {
-          if (data.error) {
-            throw new Error(data.error);
-          }
-          setUserData(data);
-          setNome(data.nome);
-          setSenha(data.senha);
-          setImgUrl(data.img || ''); // Definindo a URL da imagem
-        })
-        .catch((error) => console.error('Erro ao buscar dados:', error))
-        .finally(() => setLoading(false));
-    }
-  }, [router]);
+    fetch(endpoint)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Erro ao buscar produtos');
+        }
+        return res.json();
+      })
+      .then((data: Produto[]) => {
+        setProdutos(data);
+      })
+      .catch((err) => {
+        console.error('Erro:', err);
+        setError('Não foi possível carregar os produtos.');
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userId');
-    router.push('/');
-  };
+  // Calcula o total de compras
+  const qntTotalDeCompras = produtos.reduce((total, produto) => total + produto.qnt, 0);
 
-  const handleSave = async () => {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      const response = await fetch('http://localhost/BeautyStyle/login_update.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          id: userId,
-          nome: nome,
-          senha: senha,
-          img: imgUrl, // Enviar a URL da imagem
-        }).toString(),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        alert('Informações atualizadas com sucesso');
-      } else {
-        alert(result.error || 'Erro ao atualizar as informações');
-      }
-    }
-  };
+  // Verifica se o único produto tem id 0
+  const exibirNenhumaCompra = produtos.length === 1 && produtos[0].id === 0;
 
   return (
     <div>
       <Head>
-        <title>Beauty Style</title>
-        <meta name="description" content="Created with NextJS" />
+        <title>Produtos - Beauty Style</title>
+        <meta name="description" content="Lista de produtos comprados" />
       </Head>
-      <Navbar page="login" />
-      <div className="bg1 w-full lg:w-[80%] m-auto mt-8 h-[22.5rem] flex p-5">
-        <div className="w-[70%] h-[20rem] inline m-auto">
-          {loading ? (
-            <p>Carregando dados...</p>
-          ) : userData ? (
-            <div className="w-[30rem] m-auto">
-              <label htmlFor="nome" className="">Nome</label>
-              <input
-                className="border-none outline-none rounded-lg w-[30rem] px-4 flex justify-center m-auto"
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              /><br/>
-              <div className="flex">
-              <div className="inline">
-              <label htmlFor="email" className="">Email</label>
-              <input
-                className="border-none outline-none rounded-lg w-[15rem] px-4 flex justify-center m-auto mr-2"
-                type="text"
-                value={userData.email || ''}
-                readOnly
-              /><br/>
-              </div>
-              <div className="inline">
-                <label htmlFor="senha" className="">Senha</label>
-                <input
-                  className="border-none outline-none rounded-lg w-[14rem] px-4 flex justify-center m-auto ml-2"
-                  type="password"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
-                /><br/>
-              </div>
-              </div>
-              <label htmlFor="img" className="">URL da Imagem</label>
-              <input
-                className="border-none outline-none rounded-lg w-[30rem] px-4 flex justify-center m-auto"
-                placeholder='Insira uma URL aqui'
-                type="text"
-                value={imgUrl}
-                onChange={(e) => setImgUrl(e.target.value)} // Atualiza a URL da imagem
-              /><br/>
-              <div className="flex w-[33rem] m-auto">
-                <Link
-                  href="/user/compras"
-                  className="bg-white text-black py-2 px-4 rounded mt-4 hover:opacity-65 m-auto flex justify-center place-items-center duration-300"
-                >
-                  Minhas Compras
-                </Link>
-                <button
-                  onClick={handleSave}
-                  className="bg-white text-black py-2 px-4 rounded mt-4 hover:opacity-65 m-auto flex justify-center place-items-center duration-300"
-                >
-                  Salvar Informações
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-600 m-auto flex justify-center place-items-center duration-300"
-                >
-                  Sair da conta
-                </button>
-              </div>
-            </div>
-          ) : (
-            <p>Usuário não encontrado.</p>
-          )}
-        </div>
+      <Navbar page="produtos" />
 
-        <div className="w-[30%] h-[20rem] bg-white rounded-md flex items-center justify-center relative">
-          {imgUrl ? (
-            <img src={imgUrl} alt="Profile" className="rounded-lg"/>
-          ) : (
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZg2qVWPh1HQc_tzr3QkXXRj9koKN8bhVMog&s' alt="Profile" className="rounded-full"/>
-          )}
-        </div>
+      <div className="bg1 text-slate-800 p-4 rounded-lg mb-4 w-[95%] m-auto text-center mt-5">
+        <p className='w-full text-center flex justify-center place-items-center'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="hidden lg:inline mr-2 bi bi-award" viewBox="0 0 16 16">
+            <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
+            <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+          </svg>
+          Com o Clube Fidelidade Beauty Style, você ganha descontos após realizar suas compras!
+        </p>
       </div>
 
-      <div className="w-[92%] m-auto mt-5 lg:mt-10">
+      <div className="container mx-auto mt-8 px-4">
+        <h1 className="text-2xl font-bold mb-4 text-center flex justify-center place-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-cart2 mr-3" viewBox="0 0 16 16">
+            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+          </svg>
+          Minhas Compras
+        </h1>
+
+        {loading ? (
+          <p>Carregando produtos...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : exibirNenhumaCompra ? (
+          <p className='text-center'>Nenhuma compra realizada.</p>
+        ) : produtos.length > 0 ? (
+          <>
+            <div className="flex justify-center">
+              <div className="bg-blue-100 text-blue-600 p-4 rounded-lg mb-4">
+                <p className="font-semibold">Quantidade de produtos comprados: {qntTotalDeCompras}</p>
+              </div>
+              <div className="bg-green-100 text-green-500 p-4 rounded-lg mb-4 ml-2">
+                <p className="font-semibold">Seu desconto na sua próxima compra é de {qntTotalDeCompras * 1.4}%</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {produtos.map((produto, index) => (
+                <div
+                  key={index}
+                  className="bg-white shadow-lg border-slate-400 border rounded-lg hover:shadow-lg p-5 mt-0 sm:hover:scale-105 duration-300 cursor-pointer"
+                >
+                  <Link href={`/${produto.categoria}/${produto.id}`}>
+                    <div
+                      className="w-[100%] h-64 lg:h-52 m-auto bg-center bg-cover border border-slate-300 rounded-md"
+                      style={{
+                        backgroundImage: `url('/img/products/${produto.categoria}/${produto.id}.webp')`,
+                      }}
+                    ></div>
+                    <h2 className="text-lg font-semibold my-2">{produto.nome}</h2>
+                    <p className="text-sm text-gray-500">
+                      Categoria: {produto.categoria}
+                    </p>
+                    <p className="text-gray-800">Preço: <label className='text-green-600'>R$ {produto.preco}</label></p>
+                    <p className="text-gray-600 truncate">{produto.descricao}</p>
+                    <p className="text-gray-700 mt-2">
+                      Quantidade: {produto.qnt}
+                    </p>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p>Nenhum produto encontrado.</p>
+        )}
+      </div>
+
+      <div className="w-[92%] m-auto mt-7">
         <hr className="custom-hr" />
         <Footer />
       </div>

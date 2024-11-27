@@ -2,7 +2,7 @@ import '@/app/globals.css';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -17,7 +17,7 @@ interface Product {
 }
 
 export default function Cart() {
-  // const router = useRouter();
+  const router = useRouter();
   const [cart, setCart] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function Cart() {
     }
   
     const produtos = cart.map((product) => ({
+      id: product.id,
       title: product.title,
       description: product.description,
       price: product.price,
@@ -85,6 +86,9 @@ export default function Cart() {
         if (data.success) {
           alert('Pedido realizado com sucesso!');
           console.log('Resposta do servidor:', data.message);
+          localStorage.removeItem('cart');
+          localStorage.removeItem('cartCount');
+          router.push('/user/compras');
         } else {
           alert('Erro ao finalizar o pedido.');
           console.error('Erro do servidor:', data.message);
@@ -93,8 +97,7 @@ export default function Cart() {
       .catch((error) => {
         console.error('Erro ao enviar os dados:', error);
       });
-  }
-  
+  }  
 
   return (
     <div>

@@ -69,7 +69,7 @@ export default function ProductDetails() {
     if (id) {
       const fetchProduct = async () => {
         try {
-          const response = await fetch(`http://localhost/BeautyStyle/products.php?categoria=brincos`);
+          const response = await fetch(`http://localhost/BeautyStyle/products.php?categoria=pulseiras`);
           if (!response.ok) {
             throw new Error('Erro ao carregar os produtos');
           }
@@ -105,7 +105,7 @@ export default function ProductDetails() {
       const productWithDiscount = {
         ...product,
         price: discountedPrice,  // Alterar para o preço com desconto
-        imagem: `/img/products/brincos/${product.id}.webp`,
+        imagem: `/img/products/pulseiras/${product.id}.webp`,
         quantity: qnt,
         categoria: product.categoria,
       };
@@ -142,9 +142,9 @@ export default function ProductDetails() {
           <title>Produto não encontrado</title>
           <meta name="description" content="Created with NextJS" />
         </Head>
-        <Navbar page="brincos" />
+        <Navbar page="pulseiras" />
         <p className="text-2xl mt-10">Produto não encontrado.</p>
-        <Link href={`/brincos`}>
+        <Link href={`/pulseiras`}>
           <div className="select-none w-full md:w-52 h-auto bg1 mt-5 mb-10 md:mb-10 md:text-md lg:w-72 p-3 rounded-md text-white hover:opacity-70 duration-300 uppercase cursor-pointer m-auto">
             Voltar à lista de produtos
           </div>
@@ -163,7 +163,7 @@ export default function ProductDetails() {
         <meta name="description" content="Created with NextJS" />
       </Head>
 
-      <Navbar page="brincos" />
+      <Navbar page="pulseiras" />
 
       <div className="w-[80%] m-auto text-center">
         <h1 className="text-font-300 text-center mt-5 mb-3 text-xl uppercase">
@@ -172,7 +172,7 @@ export default function ProductDetails() {
         <Image
           width={300}
           height={300}
-          src={`/img/products/brincos/${`${product.id}.webp`}`}
+          src={`/img/products/pulseiras/${`${product.id}.webp`}`}
           alt={product.title}
           className="m-auto text-center"
         />
@@ -208,7 +208,7 @@ export default function ProductDetails() {
           >
             Adicionar ao carrinho
           </div>
-          <Link href={`/brincos`}>
+          <Link href={`/pulseiras`}>
             <div className="select-none w-full md:w-52 h-auto bg1 mt-2 mb-10 md:mb-10 md:text-md md:mx-2 lg:w-72 p-3 rounded-md text-white hover:opacity-70 duration-300 uppercase">
               Voltar à lista de produtos
             </div>

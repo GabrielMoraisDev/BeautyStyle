@@ -1,12 +1,11 @@
 <?php
-
 // Define os cabeçalhos CORS para permitir acesso de outros domínios
 include('cors.php');
 
 // Conexão com o banco de dados
 include('conn.php');
 
-// Define o cabeçalho para a resposta ser em JSON\
+// Define o cabeçalho para a resposta ser em JSON
 header("Content-Type: application/json");
 
 try {
@@ -31,7 +30,9 @@ try {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result) {
-        echo json_encode($result); // Retorna o registro único
+        // DESCONSIDEANDO A SEGURANÇA: Removendo hash da senha (se estiver em hash) - apenas exibe.
+        // Se a senha já estiver salva como hash no banco, este valor será retornado diretamente.
+        echo json_encode($result); 
     } else {
         echo json_encode(["error" => "Usuário não encontrado."]);
     }

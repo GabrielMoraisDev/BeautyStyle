@@ -19,7 +19,7 @@ interface Order {
   qnt: number; // Quantidade do produto no pedido
 }
 
-export default function Brincos() {
+export default function Pulseiras() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -31,7 +31,7 @@ export default function Brincos() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost/BeautyStyle/products.php?categoria=brincos');
+        const response = await fetch('http://localhost/BeautyStyle/products.php?categoria=pulseiras');
         if (!response.ok) {
           throw new Error('Erro ao buscar os produtos.');
         }
@@ -79,14 +79,14 @@ export default function Brincos() {
   return (
     <div className="mb-10">
       <Head>
-        <title>Brincos - Beauty Style</title>
+        <title>Pulseiras - Beauty Style</title>
         <meta name="description" content="Created with NextJS" />
       </Head>
 
-      <Navbar page="brincos" />
+      <Navbar page="pulseiras" />
 
       <h1 className="uppercase text-font-300 text-center text-xl md:text-3xl mt-5">
-        Brincos
+        Pulseiras
       </h1>
       <p className="text-center text-green-700">{totalOrdersQuantity > 0 && `(DESCONTO DE ${totalOrdersQuantity * 1.4}% APLICADO)`}</p>
 
@@ -118,9 +118,9 @@ export default function Brincos() {
                 id={product.id}
                 description={product.description}
                 key={product.id}
-                page="brincos"
+                page="pulseiras"
                 title={product.title}
-                imagem={product.imageUrl || `/products/brincos/${product.id}.webp`} // Usando imagem opcional
+                imagem={product.imageUrl || `/products/pulseiras/${product.id}.webp`} // Usando imagem opcional
                 price={discountedPrice}  // Passando o preço com desconto
               />
             );

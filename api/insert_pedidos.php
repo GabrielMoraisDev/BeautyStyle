@@ -2,10 +2,7 @@
 header('Content-Type: application/json');
 
 // Conexão com o banco de dados
-// Define os cabeçalhos CORS para permitir acesso de outros domínios
 include('cors.php');
-
-// Conexão com o banco de dados
 include('conn.php');
 
 $conn = new mysqli($host, $user, $password, $dbName);
@@ -26,12 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_usuario = $data['id_usuario'];
     $produtos = $data['produtos'];
 
-    $stmt = $conn->prepare("INSERT INTO pedidos (id_usuario, nome, descricao, preco, categoria, qnt) VALUES (?, ?, ?, ?, ?, ?)");
+    // Prepare a query com o campo id_produto
+    $stmt = $conn->prepare("INSERT INTO pedidos (id_usuario, id_produto, nome, descricao, preco, categoria, qnt) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     foreach ($produtos as $produto) {
         $stmt->bind_param(
-            "issdsi", 
+            "iissdsi", 
             $id_usuario,
+            $produto['id'], // Adicionando o id_produto
             $produto['title'],
             $produto['description'],
             $produto['price'],
