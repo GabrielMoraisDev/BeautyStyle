@@ -90,18 +90,18 @@ export default function ProtectedPage() {
         <meta name="description" content="Created with NextJS" />
       </Head>
       <Navbar page="login" />
-      <div className="bg1 w-full lg:w-[80%] m-auto mt-8 h-[23rem] flex p-5">
+      <div className="bg1 w-full lg:w-[80%] 2xl:w-[55%] m-auto mt-8  lg:flex p-5">
         <div className="w-[70%] h-[20rem] inline m-auto">
           {loading ? (
             <p>Carregando dados...</p>
           ) : userData ? (
-            <div className="ml-5">
-              <p className='mt-2 mb-7 text-2xl'>Informações da Conta de <b>{nome}</b></p>
-              <div className="flex">
+            <div className="lg:ml-5">
+              <p className='lg:mt-2 mb-7 text-2xl'>Informações da Conta de <b>{nome}</b></p>
+              <div className="lg:flex">
               <div className="inline">
               <label htmlFor="nome" className="">Nome</label>
               <input
-                className="border-none outline-none rounded-lg w-[20rem] px-4 flex justify-center m-auto"
+                className="border-none outline-none rounded-lg w-full xl:w-[20rem] lg:w-[15.5rem] px-4 flex justify-center lg:m-auto"
                 type="text"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
@@ -110,7 +110,7 @@ export default function ProtectedPage() {
               <div className="inline">
                 <label htmlFor="email" className="ml-2">Email</label>
                   <input
-                  className="border-none outline-none rounded-lg w-[20rem] px-4 flex justify-center m-auto ml-2"
+                  className="border-none outline-none rounded-lg w-full xl:w-[20rem] lg:w-[15.5rem] px-4 flex justify-center lg:m-auto lg:ml-2"
                   type="text"
                   value={userData.email || ''}
                   readOnly
@@ -119,36 +119,36 @@ export default function ProtectedPage() {
               </div>
               <label htmlFor="img" className="">URL da Imagem</label>
               <input
-                className="border-none outline-none rounded-lg w-[40.5rem] px-4 flex justify-center"
+                className="border-none outline-none rounded-lg w-full xl:w-[40.5rem] lg:w-[31.5rem] px-4 flex justify-center"
                 placeholder='Insira uma URL aqui'
                 type="text"
                 value={imgUrl}
-                onChange={(e) => setImgUrl(e.target.value)} // Atualiza a URL da imagem
+                onChange={(e) => setImgUrl(e.target.value)}
               /><br/>
-              <div className="flex w-[36rem] m-auto">
+              <div className="lg:flex w-full lg:w-[31.5rem] xl:w-[36rem]">
                 <Link
                   href="/user/compras"
-                  className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600 m-auto flex justify-center place-items-center duration-300"
+                  className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600 flex justify-center place-items-center duration-300 text-center m-auto w-full lg:w-auto"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="bi bi-cart2 mr-2" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="hidden lg:inline bi bi-cart2 mr-2" viewBox="0 0 16 16">
                     <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
                   </svg>
                   Minhas Compras
                 </Link>
                 <button
                   onClick={handleSave}
-                  className="bg-green-500 text-white py-2 px-4 rounded mt-4 hover:bg-green-600 m-auto flex justify-center place-items-center duration-300"
+                  className="bg-green-500 text-white py-2 px-4 rounded mt-4 hover:bg-green-600 flex justify-center place-items-center duration-300 text-center m-auto w-full lg:w-auto"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="bi bi-floppy mr-2" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="hidden lg:inline bi bi-floppy mr-2" viewBox="0 0 16 16">
                     <path d="M11 2H9v3h2z"/>
                     <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/>
                   </svg> Salvar Informações
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="bg-red-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-600 m-auto flex justify-center place-items-center duration-300"
+                  className="bg-red-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-600 flex justify-center place-items-center duration-300 text-center m-auto w-full lg:w-auto"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="bi bi-box-arrow-left mr-2" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" className="hidden lg:inline bi bi-box-arrow-left mr-2" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
                     <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
                   </svg>
@@ -161,7 +161,7 @@ export default function ProtectedPage() {
           )}
         </div>
 
-        <div className="w-[30%] h-[20rem] bg-white rounded-md flex items-center justify-center relative">
+        <div className="w-full h-auto mt-10 lg:mt-0 lg:w-[30%] lg:h-[20rem] bg-white rounded-md flex items-center justify-center relative">
           {imgUrl ? (
             <img src={imgUrl} alt="Profile" className="rounded-lg"/>
           ) : (

@@ -104,21 +104,29 @@ export default function ProductDetails() {
       // Usar o preço com desconto ao adicionar o produto
       const productWithDiscount = {
         ...product,
-        price: discountedPrice,  // Alterar para o preço com desconto
-        imagem: `/img/products/pulseiras/${product.id}.webp`,
+        price: discountedPrice, // Alterar para o preço com desconto
+        imagem: `/img/products/aneis/${product.id}.webp`,
         quantity: qnt,
         categoria: product.categoria,
       };
   
       if (existingProduct) {
         existingProduct.quantity += qnt;
-        existingProduct.price = discountedPrice;  // Atualizar o preço com desconto se o produto já existir no carrinho
+        existingProduct.price = discountedPrice; // Atualizar o preço com desconto se o produto já existir no carrinho
       } else {
         cart.push(productWithDiscount);
       }
   
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
+  
+      // Perguntar se o usuário deseja personalizar a joia
+      const wantsToCustomize = confirm('Deseja personalizar esta joia?');
+      if (wantsToCustomize) {
+        // Redirecionar para o WhatsApp
+        window.location.href = 'https://wa.me/11939320470';
+        return; // Não recarregar a página se redirecionar
+      }
     }
   
     alert('Produto adicionado ao carrinho de compras');
