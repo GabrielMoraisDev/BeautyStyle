@@ -22,7 +22,7 @@ try {
     $id = intval($_GET['id']); // Sanitiza o ID para evitar SQL Injection
 
     // Consulta ao banco
-    $stmt = $conn->prepare("SELECT nome, email, senha, qnt_compras, img FROM users WHERE id = :id");
+    $stmt = $conn->prepare("SELECT nome, email, qnt_compras, img FROM users WHERE id = :id");
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
