@@ -120,7 +120,7 @@ export default function Cart() {
               {cart.map((product) => (
                 <div key={product.id}>
                   <div className="inline lg:flex my-5 w-[95%]">
-                    <Image width={300} height={300} src={`${product.imagem}`} alt={product.title} className="w-32 h-32 shadow-lg m-auto" />
+                    <Image width={300} height={300} src={`/img/products/${product.categoria}/${product.id}.webp`} alt={product.title} className="w-32 h-32 shadow-lg m-auto" />
                     <div className="lg:ml-4 text-center lg:text-left">
                       <p className="text-lg font-semibold mt-3 lg:mt-0">{product.title}</p>
                       <p className="m-auto text-md w-[90%] text-slate-700 mt-3 lg:mt-2 lg:ml-0">{product.description}</p>
