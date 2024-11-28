@@ -37,7 +37,7 @@ export default function Pants() {
 
     // Envia os dados para o servidor
     try {
-      const response = await fetch('http://beautystyle.42web.io/add_user.php', {
+      const response = await fetch('https://lime-dragonfly-325155.hostingersite.com/add_user.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, email, senha }),

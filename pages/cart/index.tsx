@@ -71,7 +71,7 @@ export default function Cart() {
     }));
   
     // Enviar os dados via POST para o PHP
-    fetch('http://beautystyle.42web.io/insert_pedidos.php', {
+    fetch('https://lime-dragonfly-325155.hostingersite.com/insert_pedidos.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

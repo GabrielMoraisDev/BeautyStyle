@@ -30,7 +30,7 @@ export default function Pants() {
     e.preventDefault(); // Evita o comportamento padrão do formulário
   
     try {
-      const response = await fetch('http://beautystyle.42web.io/login_validation.php', {
+      const response = await fetch('https://lime-dragonfly-325155.hostingersite.com/login_validation.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

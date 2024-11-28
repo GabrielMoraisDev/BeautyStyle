@@ -31,7 +31,7 @@ export default function Aneis() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://beautystyle.42web.io/products.php?categoria=aneis');
+        const response = await fetch('https://lime-dragonfly-325155.hostingersite.com/products.php?categoria=aneis');
         if (!response.ok) {
           throw new Error('Erro ao buscar os produtos.');
         }
@@ -45,7 +45,7 @@ export default function Aneis() {
     const fetchOrders = async () => {
       try {
         const userId = localStorage.getItem('userId') || '99999'; // Se estiver vazio, substitui por '99999'
-        const response = await fetch('http://beautystyle.42web.io/pedidos.php?id_user=' + userId);
+        const response = await fetch('https://lime-dragonfly-325155.hostingersite.com/pedidos.php?id_user=' + userId);
         if (!response.ok) {
           throw new Error('Erro ao buscar os pedidos.');
         }
