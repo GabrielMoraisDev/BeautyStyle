@@ -30,7 +30,7 @@ export default function Pants() {
     e.preventDefault(); // Evita o comportamento padrão do formulário
   
     try {
-      const response = await fetch('http://localhost/BeautyStyle/login_validation.php', {
+      const response = await fetch('http://beautystyle.42web.io/login_validation.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ export default function Compras() {
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
-    const endpoint = `http://localhost/Beautystyle/pedidos.php?id_user=${userId}`;
+    const endpoint = `https://beautystyle.42web.io/pedidos.php?id_user=${userId}`;
 
     fetch(endpoint)
       .then((res) => {

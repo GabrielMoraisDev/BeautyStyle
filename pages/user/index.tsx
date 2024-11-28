@@ -31,7 +31,7 @@ export default function ProtectedPage() {
       router.push('/login'); // Redireciona para a página de login se o token ou o ID estiver ausente
     } else {
       // Buscar os dados do usuário pelo ID
-      fetch(`http://localhost/BeautyStyle/login_info.php?id=${userId}`)
+      fetch(`http://beautystyle.42web.io/login_info.php?id=${userId}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error('Erro na resposta da API');
@@ -61,7 +61,7 @@ export default function ProtectedPage() {
   const handleSave = async () => {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      const response = await fetch('http://localhost/BeautyStyle/login_update.php', {
+      const response = await fetch('http://beautystyle.42web.io/login_update.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

@@ -71,7 +71,7 @@ export default function Cart() {
     }));
   
     // Enviar os dados via POST para o PHP
-    fetch('http://localhost/Beautystyle/insert_pedidos.php', {
+    fetch('http://beautystyle.42web.io/insert_pedidos.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
