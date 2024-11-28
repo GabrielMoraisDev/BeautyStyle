@@ -121,8 +121,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `qnt_compras`, `img`) VALUES
-(5, 'Gabriel Morais', 'gabrielleitecajuru@gmail.com', '$2y$10$IZR41caXe4ebrRKEWw4HWe9PysNqZ3jiFqZpyRL5vX4kGTjnQU06e', NULL, 'https://s2-gshow.glbimg.com/lpWB_yug9YiYl3GUg5JsX6hxwhg=/0x0:1288x727/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2022/8/A/MjyixqQ0uBCpd7ADfV7g/eduardo-sterblitch-de-freddie-mercury-prateado.jpg'),
-(6, 'Lure', 'iurilima.395@gmail.com', '$2y$10$9s4Gc.2mje67P2RrHg93TeSvCriLGgWD3Vap.ABBOC/BogOUi7nKi', NULL, '');
+(1, 'User 1', 'teste@gmail.com', '$2y$10$IZR41caXe4ebrRKEWw4HWe9PysNqZ3jiFqZpyRL5vX4kGTjnQU06e', NULL, '')
 
 --
 -- Índices para tabelas despejadas
